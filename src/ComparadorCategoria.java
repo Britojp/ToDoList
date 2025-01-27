@@ -6,4 +6,5 @@ class ComparadorCategoria implements Comparator<Tarefa> {
     public int compare(Tarefa tarefa1, Tarefa tarefa2) {
         return tarefa1.getCategoria().compareTo(tarefa2.getCategoria());
     }
+
 }

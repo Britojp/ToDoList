@@ -20,6 +20,9 @@ public class Menu {
             System.out.println("4. Ordenar por prioridade");
             System.out.println("5. Ordenar por status");
             System.out.println("6. Ordenar por categoria");
+            System.out.println("7. Ordernar por data final");
+            System.out.println("8. Mudar o status da tarefa");
+            System.out.println("9. Atualizar data da tarefa");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -38,11 +41,33 @@ public class Menu {
                     break;
                 case 4:
                     listaDeTarefas.ordenarPorPrioridade();
-                    listaDeTarefas.listarTodasTarefas();
+                    listaDeTarefas.listarTarefasPorPrioridade();
                     break;
                 case 5:
                     listaDeTarefas.ordenarPorStatus();
-                    listaDeTarefas.listarTodasTarefas();
+                    listaDeTarefas.listarTarefasPorStatus();
+                    break;
+                case 6:
+                    listaDeTarefas.ordenarPorCategoria();
+                    listaDeTarefas.listarTarefasPorCategoria();
+                    break;
+                case 7:
+                    listaDeTarefas.ordenarPorDataFinal();
+                    listaDeTarefas.listarTarefasPorDataFinal();
+                    break;
+                case 8:
+                    System.out.println("Digite o nome da atividade que deseja mudar o status: ");
+                    String nomeAtividade = scanner.nextLine();
+                    System.out.println("Digite o status da atividade: ");
+                    String status = scanner.nextLine();
+                    listaDeTarefas.atualizarStatus(nomeAtividade, status);
+                    break;
+                case 9:
+                    System.out.println("Digite o nome da atividade que deseja mudar a data final (YYYY-MM-DD):: ");
+                    String nome = scanner.nextLine();
+                    System.out.println("Digite o status da atividade: ");
+                    String dataFinal = scanner.nextLine();
+                    listaDeTarefas.atualizarData(nome, dataFinal);
                     break;
                 case 0:
                     System.out.println("Saindo do programa...");

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Tarefa implements Comparable<Tarefa>{
     private String nome;
@@ -6,11 +8,12 @@ public class Tarefa implements Comparable<Tarefa>{
     private int prioridade;
     private String categoria;
     private String status;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public Tarefa(String nome, String descricao, String dataFinal, int prioridade, String categoria, String status){
         this.nome = nome;
         this.descricao = descricao;
-        this.dataFinal = dataFinal;
+        this.dataFinal = String.valueOf(LocalDate.parse(dataFinal, formatter));
         this.prioridade = prioridade;
         this.categoria = categoria;
         this.status = status;
@@ -45,20 +48,33 @@ public class Tarefa implements Comparable<Tarefa>{
         this.status = status;
     }
 
+    public void setDataFinal(String dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+
     public int compareTo(Tarefa outraTarefa) {
         return Integer.compare(this.prioridade, outraTarefa.prioridade);
     }
 
     @Override
     public String toString() {
-        return "Tarefa{" +
-                "nome='" + nome + '\'' +
-                ", descricao= " + descricao + '\'' +
-                ", dataFinal= " + dataFinal + '\'' +
-                ", prioridade= " + prioridade +
-                ", categoria= " + categoria + '\'' +
-                ", status= " + status + '\'' +
-                '}';
+        return "Tarefa: " + nome + ", Data Final: " + dataFinal + ", Prioridade: " + prioridade;
+    }
+
+    public String toStringPorPrioridade() {
+        return "Tarefa: " + nome + ", Prioridade: " + prioridade;
+    }
+
+    public String toStringPorStatus() {
+        return "Tarefa: " + nome + ", Status: " + status;
+    }
+
+    public String toStringPorCategoria() {
+        return "Tarefa: " + nome + ", Categoria: " + categoria;
+    }
+
+    public String toStringPorDataFinal() {
+        return "Tarefa: " + nome + ", Data Final: " + dataFinal;
     }
 
 }

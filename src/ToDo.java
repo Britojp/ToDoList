@@ -12,10 +12,6 @@ public class ToDo {
         manipulacaoArquivo = new ManipulacaoArquivo();
     }
 
-    public ArrayList<Tarefa> getListaTarefa() {
-        return listaTarefa;
-    }
-
     public ArrayList<Tarefa> adicionarTarefa(Tarefa tarefa) {
         listaTarefa.add(tarefa);
         System.out.println("Tarefa adiciona com sucesso");
@@ -55,5 +51,55 @@ public class ToDo {
         Collections.sort(listaTarefa, new ComparadorCategoria());
     }
 
+    public void ordenarPorDataFinal() {
+        Collections.sort(listaTarefa, new ComparadorData());
+    }
+
+    public void atualizarStatus(String nomeAtividade, String status){
+
+        for(Tarefa tarefa : listaTarefa){
+            if(tarefa.getNome().equals(nomeAtividade)){
+                tarefa.setStatus(status);
+                System.out.println("Status atualizado com sucesso!");
+                manipulacaoArquivo.salvarArquivos(listaTarefa);
+            }
+        }
+
+    }
+
+    public void atualizarData(String nomeAtividade, String data){
+
+        for(Tarefa tarefa : listaTarefa){
+            if(tarefa.getNome().equals(nomeAtividade)){
+                tarefa.setDataFinal(data);
+                System.out.println("Data atualizado com sucesso!");
+                manipulacaoArquivo.salvarArquivos(listaTarefa);
+            }
+        }
+
+    }
+    public void listarTarefasPorPrioridade() {
+        for (Tarefa tarefa : listaTarefa) {
+            System.out.println(tarefa.toStringPorPrioridade());
+        }
+    }
+
+    public void listarTarefasPorStatus() {
+        for (Tarefa tarefa : listaTarefa) {
+            System.out.println(tarefa.toStringPorStatus());
+        }
+    }
+
+    public void listarTarefasPorCategoria() {
+        for (Tarefa tarefa : listaTarefa) {
+            System.out.println(tarefa.toStringPorCategoria());
+        }
+    }
+
+    public void listarTarefasPorDataFinal() {
+        for (Tarefa tarefa : listaTarefa) {
+            System.out.println(tarefa.toStringPorDataFinal());
+        }
+    }
 
 }
