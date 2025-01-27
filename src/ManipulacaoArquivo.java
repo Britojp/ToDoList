@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ManipulacaoArquivo {
 
     public ManipulacaoArquivo(){
+
     }
 
     public ArrayList<Tarefa> carregarArquivo() {

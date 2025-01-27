@@ -6,7 +6,11 @@ public class Main {
 
         ManipulacaoArquivo manipulacaoArquivo = new ManipulacaoArquivo();
         ArrayList<Tarefa> listaTarefas = manipulacaoArquivo.carregarArquivo();
-        System.out.println(listaTarefas);
+
+        ToDo todo = new ToDo(listaTarefas);
+
+        Menu menu = new Menu(todo);
+        menu.exibirMenu();
 
 
     }

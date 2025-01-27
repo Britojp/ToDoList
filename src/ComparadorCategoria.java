@@ -1,6 +1,3 @@
-package comparador;
-
-
 import java.util.Comparator;
 
 class ComparadorCategoria implements Comparator<Tarefa> {

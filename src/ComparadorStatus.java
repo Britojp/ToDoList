@@ -1,5 +1,3 @@
-package comparador;
-
 import java.util.Comparator;
 
 
