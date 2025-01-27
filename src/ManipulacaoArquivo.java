@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+
 
 public class ManipulacaoArquivo {
 
@@ -19,8 +18,9 @@ public class ManipulacaoArquivo {
                 String dataFinal = campos[2];
                 int prioridade = Integer.parseInt(campos[3]);
                 String categoria = campos[4];
+                String status = campos[5];
 
-                Tarefa tarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria);
+                Tarefa tarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status);
 
                 listaTarefa.add(tarefa);
             }
@@ -31,5 +31,23 @@ public class ManipulacaoArquivo {
         }
         return listaTarefa;
     }
-    
+
+    public void salvarArquivos(ArrayList<Tarefa> listaTarefa) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src/arqs/tarefas_20.csv"))) {
+            for (Tarefa tarefa : listaTarefa) {
+                String nome = tarefa.getNome();
+                String descricao = tarefa.getDescricao();
+                String data = tarefa.getDataFinal();
+                int prioridade = tarefa.getPrioridade();
+                String categoria = tarefa.getCategoria();
+                String status = tarefa.getStatus();
+
+                bufferedWriter.write(String.format("%s,%s,%s,%d,%s,%s%n", nome,descricao,data,prioridade,categoria,status));
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o arquivo de funcionários: " + e.getMessage());
+        }
+    }
+
+
 }
