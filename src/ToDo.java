@@ -55,29 +55,38 @@ public class ToDo {
         Collections.sort(listaTarefa, new ComparadorData());
     }
 
-    public void atualizarStatus(String nomeAtividade, String status){
-
-        for(Tarefa tarefa : listaTarefa){
-            if(tarefa.getNome().equals(nomeAtividade)){
+    public void atualizarStatus(String nomeAtividade, String status) {
+        boolean encontrada = false;
+        for (Tarefa tarefa : listaTarefa) {
+            if (tarefa.getNome().equals(nomeAtividade)) {
                 tarefa.setStatus(status);
                 System.out.println("Status atualizado com sucesso!");
                 manipulacaoArquivo.salvarArquivos(listaTarefa);
+                encontrada = true;
+                break;
             }
         }
-
+        if (!encontrada) {
+            System.out.println("Tarefa não encontrada.");
+        }
     }
 
-    public void atualizarData(String nomeAtividade, String data){
-
-        for(Tarefa tarefa : listaTarefa){
-            if(tarefa.getNome().equals(nomeAtividade)){
+    public void atualizarData(String nomeAtividade, String data) {
+        boolean encontrada = false;
+        for (Tarefa tarefa : listaTarefa) {
+            if (tarefa.getNome().equals(nomeAtividade)) {
                 tarefa.setDataFinal(data);
-                System.out.println("Data atualizado com sucesso!");
+                System.out.println("Data atualizada com sucesso!");
                 manipulacaoArquivo.salvarArquivos(listaTarefa);
+                encontrada = true;
+                break;
             }
         }
-
+        if (!encontrada) {
+            System.out.println("Tarefa não encontrada.");
+        }
     }
+
     public void listarTarefasPorPrioridade() {
         for (Tarefa tarefa : listaTarefa) {
             System.out.println(tarefa.toStringPorPrioridade());
