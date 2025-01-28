@@ -42,6 +42,9 @@ public class Tarefa implements Comparable<Tarefa>{
     public void setAlarmeAtivado(boolean alarmeAtivado) {
         this.alarmeAtivado = alarmeAtivado;
     }
+    public boolean getAlarmeAtivado(){
+        return alarmeAtivado;
+    }
 
     public String getCategoria() {
         return categoria;

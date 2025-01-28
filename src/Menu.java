@@ -23,6 +23,8 @@ public class Menu {
             System.out.println("7. Ordernar por data final");
             System.out.println("8. Mudar o status da tarefa");
             System.out.println("9. Atualizar data da tarefa");
+            System.out.println("10. Atualizar horário da tarefa");
+            System.out.println("11. Mudar o alarme da atividade");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -63,11 +65,23 @@ public class Menu {
                     listaDeTarefas.atualizarStatus(nomeAtividade, status);
                     break;
                 case 9:
-                    System.out.println("Digite o nome da atividade que deseja mudar a data final (YYYY-MM-DD):: ");
+                    System.out.println("Digite o nome da atividade que deseja mudar a data final (YYYY-MM-DD): ");
                     String nome = scanner.nextLine();
                     System.out.println("Digite o status da atividade: ");
                     String dataFinal = scanner.nextLine();
                     listaDeTarefas.atualizarData(nome, dataFinal);
+                    break;
+                case 10:
+                    System.out.println("Digite o nome da atividade que deseja mudar o horário final: ");
+                    String atividade = scanner.nextLine();
+                    System.out.println("Digite o novo horário da atividade (HH:MM): ");
+                    String horarioAtualizado = scanner.nextLine();
+                    listaDeTarefas.atualizarHorario(atividade,horarioAtualizado);
+                    break;
+                case 11:
+                    System.out.println("Digite o nome da atividade que deseja mudar o alarme: ");
+                    String nomeDaAtividade = scanner.nextLine();
+                    listaDeTarefas.atualizarAlarme(nomeDaAtividade);
                     break;
                 case 0:
                     System.out.println("Saindo do programa...");
