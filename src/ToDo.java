@@ -59,6 +59,10 @@ public class ToDo {
         Collections.sort(listaTarefa, new ComparadorData());
     }
 
+    public void ordenarPorDataHora(){
+        Collections.sort(listaTarefa, new ComparadorDataHora());
+    }
+
     public void atualizarStatus(String nomeAtividade, String status) {
         boolean encontrada = false;
         for (Tarefa tarefa : listaTarefa) {
@@ -149,6 +153,12 @@ public class ToDo {
     public void listarTarefasPorDataFinal() {
         for (Tarefa tarefa : listaTarefa) {
             System.out.println(tarefa.toStringPorDataFinal());
+        }
+    }
+
+    public void listarTarefasPorDataHorarioFinal() {
+        for (Tarefa tarefa : listaTarefa) {
+            System.out.println(tarefa.toStringPorDataHorarioFinal());
         }
     }
 

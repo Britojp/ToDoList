@@ -25,6 +25,7 @@ public class Menu {
             System.out.println("9. Atualizar data da tarefa");
             System.out.println("10. Atualizar horário da tarefa");
             System.out.println("11. Mudar o alarme da atividade");
+            System.out.println("12. Ordene por prioridade de data e horário");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -82,6 +83,10 @@ public class Menu {
                     System.out.println("Digite o nome da atividade que deseja mudar o alarme: ");
                     String nomeDaAtividade = scanner.nextLine();
                     listaDeTarefas.atualizarAlarme(nomeDaAtividade);
+                    break;
+                case 12:
+                    listaDeTarefas.ordenarPorDataHora();
+                    listaDeTarefas.listarTarefasPorDataHorarioFinal();
                     break;
                 case 0:
                     System.out.println("Saindo do programa...");

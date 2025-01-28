@@ -88,25 +88,34 @@ public class Tarefa implements Comparable<Tarefa>{
     }
 
     public String toStringPorPrioridade() {
-        return "Tarefa: " + nome + ", Prioridade: " + prioridade + ", Alarme ativado: " + alarmeAtivado;
+        return "[Prioridade: " + prioridade + "], Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado;
     }
 
     public String toStringPorStatus() {
-        return "Tarefa: " + nome + ", Status: " + status + ", Alarme ativado: " + alarmeAtivado;
+        return "[Status: " + status + "], Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado;
     }
 
     public String toStringPorCategoria() {
-        return "Tarefa: " + nome + ", Categoria: " + categoria + ", Alarme ativado: " + alarmeAtivado;
+        return  "[Categoria: " + categoria +"] ,Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado;
     }
 
     public String toStringPorDataFinal() {
         if(!alarmeAtivado) {
-            return "Tarefa: " + nome + ", Data Final: " + dataFinal + ", Alarme ativado: " + alarmeAtivado;
+            return "[Data Final: " + dataFinal +"], Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado;
         }else{
-            return "Tarefa: " + nome + ", Data Final: " + dataFinal + ", Horário final: " + horarioFinal + ", Alarme ativado: " + alarmeAtivado;
+            return "[Data Final: " + dataFinal + " Horário final: " + horarioFinal + "]Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado;
 
         }
         }
+
+    public String toStringPorDataHorarioFinal() {
+        if(alarmeAtivado) {
+            return "Data Final: " + dataFinal + ", Horário final: " + horarioFinal + ", Tarefa: " + nome + ", Alarme ativado: " + alarmeAtivado + ", Status: " + status;
+        }else{
+            return "Data Final: " + dataFinal + ", Tarefa: " + nome + ", Status: " + status;
+        }
+        }
+
 
     public LocalTime getHorarioFinal() {
         return horarioFinal;
