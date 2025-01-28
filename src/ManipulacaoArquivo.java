@@ -1,8 +1,12 @@
 import java.io.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
 public class ManipulacaoArquivo {
+
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public ManipulacaoArquivo(){
 
@@ -20,8 +24,16 @@ public class ManipulacaoArquivo {
                 int prioridade = Integer.parseInt(campos[3]);
                 String categoria = campos[4];
                 String status = campos[5];
+                boolean alarmeAtivado = Boolean.parseBoolean(campos[6]);
 
-                Tarefa tarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status);
+                Tarefa tarefa;
+
+                if (alarmeAtivado) {
+                    LocalTime horaFinal = LocalTime.parse(campos[7], timeFormatter);
+                    tarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status, alarmeAtivado, horaFinal);
+                } else {
+                    tarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status, alarmeAtivado);
+                }
 
                 listaTarefa.add(tarefa);
             }
@@ -42,13 +54,19 @@ public class ManipulacaoArquivo {
                 int prioridade = tarefa.getPrioridade();
                 String categoria = tarefa.getCategoria();
                 String status = tarefa.getStatus();
+                boolean alarmeAtivado = tarefa.isAlarmeAtivado();
 
-                bufferedWriter.write(String.format("%s,%s,%s,%d,%s,%s%n", nome,descricao,data,prioridade,categoria,status));
+                if (alarmeAtivado && tarefa.getHorarioFinal() != null) {
+                    bufferedWriter.write(String.format("%s,%s,%s,%d,%s,%s,%b,%s%n",
+                            nome, descricao, data, prioridade, categoria, status, alarmeAtivado,
+                            tarefa.getHorarioFinal().format(timeFormatter)));
+                } else {
+                    bufferedWriter.write(String.format("%s,%s,%s,%d,%s,%s,%b%n",
+                            nome, descricao, data, prioridade, categoria, status, alarmeAtivado));
+                }
             }
         } catch (IOException e) {
-            System.out.println("Erro ao salvar o arquivo de funcionários: " + e.getMessage());
+            System.out.println("Erro ao salvar o arquivo de tarefas: " + e.getMessage());
         }
     }
-
-
 }

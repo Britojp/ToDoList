@@ -99,7 +99,19 @@ public class Menu {
             System.out.print("Digite o status da tarefa (To Do, Doing, Done): ");
             String status = scanner.nextLine();
 
-            Tarefa novaTarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status);
+            System.out.println("Deseja ativar o alarme para essa tarefa? (Sim ou Não)");
+            String alarme = scanner.nextLine();
+            boolean alarmeAtivado;
+            if(alarme.equalsIgnoreCase("sim")){
+                alarmeAtivado = true;
+            }else if(alarme.equalsIgnoreCase("Não")){
+                alarmeAtivado = false;
+            }else{
+                System.out.println("Opção inválida, o alarme foi considerado desativado");
+                alarmeAtivado = false;
+            }
+
+            Tarefa novaTarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status, alarmeAtivado);
             listaDeTarefas.adicionarTarefa(novaTarefa);
         } catch (NumberFormatException e){
             System.out.println("Prioridade deve ser um número inteiro entre 1 e 5");
