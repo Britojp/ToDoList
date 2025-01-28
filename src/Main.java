@@ -7,11 +7,12 @@ public class Main {
         ManipulacaoArquivo manipulacaoArquivo = new ManipulacaoArquivo();
         ArrayList<Tarefa> listaTarefas = manipulacaoArquivo.carregarArquivo();
 
+        Alarme.verificarAlarmes(listaTarefas);
+
         ToDo todo = new ToDo(listaTarefas);
 
         Menu menu = new Menu(todo);
         menu.exibirMenu();
-
 
     }
 }
