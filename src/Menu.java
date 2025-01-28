@@ -79,32 +79,42 @@ public class Menu {
     }
 
     private void adicionarTarefa() {
-        System.out.print("Digite o nome da tarefa: ");
-        String nome = scanner.nextLine();
+        try {
+            System.out.print("Digite o nome da tarefa: ");
+            String nome = scanner.nextLine();
 
-        System.out.print("Digite a descrição da tarefa: ");
-        String descricao = scanner.nextLine();
+            System.out.print("Digite a descrição da tarefa: ");
+            String descricao = scanner.nextLine();
 
-        System.out.print("Digite a data final (YYYY-MM-DD): ");
-        String dataFinal = scanner.nextLine();
+            System.out.print("Digite a data final (YYYY-MM-DD): ");
+            String dataFinal = scanner.nextLine();
 
-        System.out.print("Digite a prioridade da tarefa (1-5): ");
-        int prioridade = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print("Digite a prioridade da tarefa (1-5): ");
+            int prioridade = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("Digite a categoria da tarefa: ");
-        String categoria = scanner.nextLine();
+            System.out.print("Digite a categoria da tarefa: ");
+            String categoria = scanner.nextLine();
 
-        System.out.print("Digite o status da tarefa (To Do, Doing, Done): ");
-        String status = scanner.nextLine();
+            System.out.print("Digite o status da tarefa (To Do, Doing, Done): ");
+            String status = scanner.nextLine();
 
-        Tarefa novaTarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status);
-        listaDeTarefas.adicionarTarefa(novaTarefa);
+            Tarefa novaTarefa = new Tarefa(nome, descricao, dataFinal, prioridade, categoria, status);
+            listaDeTarefas.adicionarTarefa(novaTarefa);
+        } catch (NumberFormatException e){
+            System.out.println("Prioridade deve ser um número inteiro entre 1 e 5");
+        }catch (Exception e) {
+        System.out.println("Erro ao adicionar tarefa " + e.getMessage());
+    }
     }
 
     private void removerTarefa() {
-        System.out.print("Digite o nome da tarefa que deseja remover: ");
-        String nome = scanner.nextLine();
-        listaDeTarefas.removerTarefaPorNome(nome);
+        try {
+            System.out.print("Digite o nome da tarefa que deseja remover: ");
+            String nome = scanner.nextLine();
+            listaDeTarefas.removerTarefaPorNome(nome);
+        } catch (Exception e) {
+            System.out.println("Erro ao remover tarefa " + e.getMessage());
+        }
     }
 }
