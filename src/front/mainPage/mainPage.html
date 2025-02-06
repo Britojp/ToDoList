@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Liter&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+ 
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -27,11 +27,11 @@
         <div class="bg-stone-100 w-px h-80 mx-4 bg-stone-800"></div>
 
         <div id="right-section" class="flex-col text-stone-300 w-[50%] m-20 text-left text-center">
-            <h1 class="text-2xl text-center text-5xl font-bold pb-2 ">Teste</h1>
-            <p class="pb-2 text-left">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque et aut consectetur totam quia eveniet eos alias magni eaque debitis distinctio necessitatibus facilis odio temporibus quasi assumenda, sequi dolorem id!</p>
-            <input id="input-right" class="bg-stone-300 text-stone-300 p-2 m-2 rounded-md text-center placeholder:text-stone-700" type="text" placeholder="Digite seu nome">
+            <h1 id="titulo-right" class="text-2xl text-center text-5xl font-bold pb-2 ">Teste</h1>
+            <p id="paragrafo-right" class="pb-2 text-left">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque et aut consectetur totam quia eveniet eos alias magni eaque debitis distinctio necessitatibus facilis odio temporibus quasi assumenda, sequi dolorem id!</p>
+            <input id="input-right" class="bg-stone-700 text-stone-300 p-2 m-2 rounded-md text-center placeholder:text-stone-100" type="text" placeholder="Digite seu nome">
             <br>
-            <button type="button" id="button-right" class="bg-stone-800 rounded-md w-20 h-10 hover:bg-stone-700">Enviar</button>
+            <button id="button-right" type="submit" id="button-right" class="w-20 bg-stone-600 hover:bg-stone-500 text-stone-100 font-bold py-3 rounded-lg transition duration-300">Enviar</button>
 
             
             
@@ -44,7 +44,7 @@
 
 
     <section class="flex flex-col items-center justify-center min-h-screen p-8">
-        <div class="text-center mb-10">
+        <task id="form-task" class="text-center mb-10">
             <h1 class="text-6xl font-bold mb-4">To Do List</h1>
             <p class="max-w-xl mx-auto">Organize suas tarefas de forma eficiente. Adicione, edite e gerencie seu dia com facilidade!</p>
         </div>
@@ -52,25 +52,26 @@
         <div class="w-full max-w-2xl bg-stone-800 p-8 rounded-2xl shadow-lg">
             <h2 class="text-3xl font-semibold text-center text-stone-100 mb-6">Adicionar Nova Task</h2>
 
-            <form class="space-y-4">
+            <div class="space-y-4">
                 <div>
                     <label class="block text-stone-300 text-sm font-medium mb-1">Nome da Task</label>
-                    <input type="text" placeholder="Digite o nome da task" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500">
+                    <input id="nameTask" type="text" placeholder="Digite o nome da task" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500">
                 </div>
 
                 <div>
                     <label class="block text-stone-300 text-sm font-medium mb-1">Descrição</label>
-                    <textarea placeholder="Adicione uma descrição" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 resize-none"></textarea>
+                    <textarea id="descriptionTask" placeholder="Adicione uma descrição" 
+                    class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 resize-none"></textarea>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-stone-300 text-sm font-medium mb-1">Data</label>
-                        <input type="date" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-500">
+                        <input id = "dataTask" type="date" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-500">
                     </div>
                     <div>
                         <label class="block text-stone-300 text-sm font-medium mb-1">Hora</label>
-                        <input type="time" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-500">
+                        <input id = "finalHourTask"type="time" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 focus:outline-none focus:ring-2 focus:ring-stone-500">
                     </div>
                 </div>
 
@@ -78,15 +79,15 @@
                     <label class="block text-stone-300 text-sm font-medium mb-1">Prioridade</label>
                     <div class="flex space-x-4">
                         <label class="flex items-center space-x-2">
-                            <input type="radio" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
+                            <input type="radio" value="Alta" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
                             <span>Alta</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="radio" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
+                            <input   type="radio" value="Média" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
                             <span>Média</span>
                         </label>
                         <label class="flex items-center space-x-2">
-                            <input type="radio" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
+                            <input type="radio" value="Baixa" name="priority" class="form-radio text-stone-500 focus:ring-stone-500">
                             <span>Baixa</span>
                         </label>
                     </div>
@@ -94,17 +95,130 @@
 
                 <div>
                     <label class="block text-stone-300 text-sm font-medium mb-1">Categoria</label>
-                    <input type="text" placeholder="Ex: Trabalho, Pessoal, Estudos" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500">
+                    <input id="categoryTask" type="text" placeholder="Ex: Trabalho, Pessoal, Estudos" class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500">
                 </div>
 
-                <button type="submit" class="w-full bg-stone-600 hover:bg-stone-500 text-stone-100 font-bold py-3 rounded-lg transition duration-300">Adicionar Task</button>
-            </form>
+                <div>
+                    <label class="block text-stone-300 text-sm font-medium mb-1">Status inicial</label>
+                    <div  class="flex space-x-4">
+                        <label class="flex items-center space-x-2">
+                            <input name="status" type="radio" value="To do"  class="form-radio text-stone-500 focus:ring-stone-500">
+                            <span>To do</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input name = "status" value="Doing" type="radio"  class="form-radio text-stone-500 focus:ring-stone-500">
+                            <span>Doing</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input name="status" type="radio" value="Done" class="form-radio text-stone-500 focus:ring-stone-500">
+                            <span>Done</span>
+                        </label>
+                    </div>
+
+                    <div id="modal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm hidden flex items-center justify-center transition-opacity duration-300">
+                        <div class="bg-stone-800 p-6 rounded-2xl shadow-2xl w-96 border-t-4 border-blue-500 transform scale-90 transition-transform duration-300">
+                            
+                            <h2 class="text-2xl font-bold text-white mb-4 text-center">Editar Tarefa</h2>
+                    
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="modalEditNameTask" class="block text-stone-300 text-sm font-medium mb-1">Nome da Task</label>
+                                    <input id="modalEditNameTask" type="text" placeholder="Digite o nome da task" 
+                                        class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 
+                                        focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                </div>
+                    
+                                <div>
+                                    <label for="modalEditDescriptionTask" class="block text-stone-300 text-sm font-medium mb-1">Descrição</label>
+                                    <textarea id="modalEditDescriptionTask" placeholder="Adicione uma descrição"
+                                        class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 
+                                        focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"></textarea>
+                                </div>
+                    
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="modalEditDateTask" class="block text-stone-300 text-sm font-medium mb-1">Data</label>
+                                        <input id="modalEditDateTask" type="date" 
+                                            class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 
+                                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                    </div>
+                                    <div>
+                                        <label for="modalEditFinalHour" class="block text-stone-300 text-sm font-medium mb-1">Hora</label>
+                                        <input id="modalEditFinalHour" type="time" 
+                                            class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 
+                                            focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                    </div>
+                                </div>
+                    
+                                <div>
+                                    <label class="block text-stone-300 text-sm font-medium mb-1">Prioridade</label>
+                                    <div class="flex space-x-4">
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input type="radio" value="Alta" name="editPriority" class="form-radio text-red-500 focus:ring-red-500">
+                                            <span>Alta</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input type="radio" value="Média" name="editPriority" class="form-radio text-yellow-500 focus:ring-yellow-500">
+                                            <span>Média</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input type="radio" value="Baixa" name="editPriority" class="form-radio text-green-500 focus:ring-green-500">
+                                            <span>Baixa</span>
+                                        </label>
+                                    </div>
+                                </div>
+                    
+                                <div>
+                                    <label for="categoryEdit" class="block text-stone-300 text-sm font-medium mb-1">Categoria</label>
+                                    <input id="categoryEdit" type="text" placeholder="Ex: Trabalho, Pessoal, Estudos"
+                                        class="w-full px-4 py-2 rounded-lg border border-stone-600 bg-stone-700 text-stone-100 placeholder-stone-400 
+                                        focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                                </div>
+                    
+                                <div>
+                                    <label class="block text-stone-300 text-sm font-medium mb-1">Status</label>
+                                    <div class="flex space-x-4">
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input name="editStatus" type="radio" value="To do" class="form-radio text-blue-500 focus:ring-blue-500">
+                                            <span>To do</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input name="editStatus" value="Doing" type="radio" class="form-radio text-purple-500 focus:ring-purple-500">
+                                            <span>Doing</span>
+                                        </label>
+                                        <label class="flex items-center space-x-2 text-white">
+                                            <input name="editStatus" type="radio" value="Done" class="form-radio text-green-500 focus:ring-green-500">
+                                            <span>Done</span>
+                                        </label>
+                                    </div>
+                                </div>
+                    
+                                <div class="flex justify-end space-x-3 pt-4">
+                                    <button id="closeModal" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition">
+                                        Cancelar
+                                    </button>
+                                    <button id="saveTask" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-500 transition">
+                                        Editar tarefa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+
+                </div>
+
+
+                <button type="" id="button-task" class="w-full bg-stone-600 hover:bg-stone-500 text-stone-100 font-bold py-3 rounded-lg transition duration-300">Adicionar Task</button>
+            </div>
         </div>
     </section>
 
     <div class="bg-stone-100  h-px mx-4 bg-stone-800 "></div>
 
-    <section class="flex flex-col items-center justify-center min-h-screen p-8">
+    <sectio n class="flex flex-col items-center justify-center min-h-screen p-8">
         <div class="text-center mb-10">
             <h1 class="text-6xl font-bold mb-4">Dashboard de Tarefas</h1>
             <p class="max-w-xl mx-auto">Visualize e gerencie suas tarefas de forma eficiente.</p>
@@ -115,36 +229,21 @@
             <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
                 <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">To Do</h2>
                 <div class="space-y-4" id="todo-list">
-                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-stone-100">Planejar Reunião</h3>
-                        <p class="text-stone-400">Definir tópicos e agenda da reunião semanal.</p>
-                        <p class="text-sm font-bold text-yellow-400">Prioridade: Média</p>
-                        <p class="text-sm font-bold text-blue-400">Status: To Do</p>
-                    </div>
+
                 </div>
             </div>
 
             <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
                 <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">Doing</h2>
                 <div class="space-y-4" id="doing-list">
-                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-stone-100">Finalizar Projeto X</h3>
-                        <p class="text-stone-400">Revisar código e enviar para o repositório.</p>
-                        <p class="text-sm font-bold text-red-400">Prioridade: Alta</p>
-                        <p class="text-sm font-bold text-purple-400">Status: Doing</p>
-                    </div>
+                  
                 </div>
             </div>
 
             <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
                 <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">Done</h2>
                 <div class="space-y-4" id="done-list">
-                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-stone-100">Revisar Documentação</h3>
-                        <p class="text-stone-400">Documentação finalizada e revisada.</p>
-                        <p class="text-sm font-bold text-green-400">Prioridade: Baixa</p>
-                        <p class="text-sm font-bold text-green-500">Status: Done</p>
-                    </div>
+                  
                 </div>
             </div>
         </div>
