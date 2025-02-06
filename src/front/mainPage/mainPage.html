@@ -110,27 +110,48 @@
             <p class="max-w-xl mx-auto">Visualize e gerencie suas tarefas de forma eficiente.</p>
         </div>
 
-        <div class="w-full max-w-4xl bg-stone-800 p-8 rounded-2xl shadow-lg">
-            <h2 class="text-3xl font-semibold text-center text-stone-100 mb-6">Minhas Tarefas</h2>
+        <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <div class="space-y-4" id="task-list">
-                <div class="flex items-center justify-between bg-stone-700 p-4 rounded-lg shadow-md">
-                    <div>
-                        <h3 class="text-xl font-bold text-stone-100">Finalizar Projeto X</h3>
-                        <p class="text-stone-400">Revisar código e enviar para o repositório.</p>
-                        <p class="text-sm text-stone-400">Data: 2025-02-10 | Hora: 14:00 | Prioridade: Alta</p>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="bg-green-600 hover:bg-green-500 text-stone-100 px-4 py-2 rounded-lg transition">Concluir</button>
-                        <button class="bg-red-600 hover:bg-red-500 text-stone-100 px-4 py-2 rounded-lg transition">Excluir</button>
+            <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">To Do</h2>
+                <div class="space-y-4" id="todo-list">
+                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-stone-100">Planejar Reunião</h3>
+                        <p class="text-stone-400">Definir tópicos e agenda da reunião semanal.</p>
+                        <p class="text-sm font-bold text-yellow-400">Prioridade: Média</p>
+                        <p class="text-sm font-bold text-blue-400">Status: To Do</p>
                     </div>
                 </div>
             </div>
 
-            <button class="w-full bg-stone-600 hover:bg-stone-500 text-stone-100 font-bold py-3 rounded-lg transition duration-300 mt-6">
-                Adicionar Nova Tarefa
-            </button>
+            <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">Doing</h2>
+                <div class="space-y-4" id="doing-list">
+                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-stone-100">Finalizar Projeto X</h3>
+                        <p class="text-stone-400">Revisar código e enviar para o repositório.</p>
+                        <p class="text-sm font-bold text-red-400">Prioridade: Alta</p>
+                        <p class="text-sm font-bold text-purple-400">Status: Doing</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-stone-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-semibold text-center text-stone-100 mb-4">Done</h2>
+                <div class="space-y-4" id="done-list">
+                    <div class="bg-stone-700 p-4 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-stone-100">Revisar Documentação</h3>
+                        <p class="text-stone-400">Documentação finalizada e revisada.</p>
+                        <p class="text-sm font-bold text-green-400">Prioridade: Baixa</p>
+                        <p class="text-sm font-bold text-green-500">Status: Done</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <button class="w-full max-w-6xl bg-stone-600 hover:bg-stone-500 text-stone-100 font-bold py-3 rounded-lg transition duration-300 mt-6">
+            Adicionar Nova Tarefa
+        </button>
     </section>
 
 
