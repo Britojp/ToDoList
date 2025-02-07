@@ -1,0 +1,26 @@
+[
+    
+    { "nome": "Projeto 1", "descricao": "Desenvolver a primeira fase do projeto", "data": "2025-02-15", "horaFinal": "09:30", "categoria": "Desenvolvimento", "prioridade": 3, "status": "Done" },
+    { "nome": "Tarefa 1", "descricao": "Elaborar documentação de requisitos", "data": "2025-01-25", "horaFinal": "10:00", "categoria": "Documentação", "prioridade": 2, "status": "Done" },
+    { "nome": "Tarefa 2", "descricao": "Revisar documento de requisitos", "data": "2025-02-10", "horaFinal": "11:00", "categoria": "Documentação", "prioridade": 4, "status": "Done" },
+    { "nome": "Tarefa 3", "descricao": "Implementar melhorias no sistema", "data": "2025-03-01", "horaFinal": "14:45", "categoria": "Melhorias", "prioridade": 5, "status": "Done" },
+    { "nome": "Tarefa 4", "descricao": "Correção de bugs", "data": "2025-01-31", "horaFinal": "10:15", "categoria": "Manutenção", "prioridade": 2, "status": "Done" },
+    { "nome": "Projeto 2", "descricao": "Planejamento de novos recursos", "data": "2025-02-28","horaFinal": "10:15", "categoria": "Planejamento", "prioridade": 1, "status": "To do" },
+    { "nome": "Tarefa 5", "descricao": "Ajustar layout do site", "data": "2025-02-20","horaFinal": "13:30", "categoria": "Design", "prioridade": 3, "status": "To do" },
+    { "nome": "Tarefa 6", "descricao": "Implementar autenticação de dois fatores", "data": "2025-02-25", "categoria": "Segurança", "prioridade": 4, "status": "Doing" },
+    { "nome": "Tarefa 7", "descricao": "Testar integração com API", "data": "2025-03-05", "horaFinal": "16:00", "categoria": "Testes", "prioridade": 3, "status": "Done" },
+    { "nome": "Tarefa 8", "descricao": "Atualizar documentação técnica", "data": "2025-01-30", "horaFinal": "08:45", "categoria": "Documentação", "prioridade": 2, "status": "Done" },
+    { "nome": "Tarefa 9", "descricao": "Realizar análise de desempenho", "data": "2025-03-10","horaFinal": "13:30", "categoria": "Análise", "prioridade": 4, "status": "To do" },
+    { "nome": "Tarefa 10", "descricao": "Configurar backups automáticos", "data": "2025-03-01","horaFinal": "13:30", "categoria": "Infraestrutura", "prioridade": 5, "status": "Doing" },
+    { "nome": "Projeto 3", "descricao": "Desenvolver nova funcionalidade de relatórios", "data": "2025-03-20","horaFinal": "13:30", "categoria": "Desenvolvimento", "prioridade": 5, "status": "To do" },
+    { "nome": "Tarefa 11", "descricao": "Revisão de código", "data": "2025-02-18", "horaFinal": "13:30", "categoria": "Revisão", "prioridade": 3, "status": "Done" },
+    { "nome": "Tarefa 12", "descricao": "Planejar sprint de março", "data": "2025-02-28","horaFinal": "13:30", "categoria": "Planejamento", "prioridade": 2, "status": "To do" },
+    { "nome": "Tarefa 13", "descricao": "Análise de incidentes", "data": "2025-03-15","horaFinal": "13:30", "categoria": "Segurança", "prioridade": 4, "status": "Doing" },
+    { "nome": "Tarefa 14", "descricao": "Otimização do banco de dados", "data": "2025-03-12","horaFinal": "13:30", "categoria": "Desempenho", "prioridade": 5, "status": "Doing" },
+    { "nome": "Tarefa 15", "descricao": "Treinamento de equipe", "data": "2025-02-22","horaFinal": "13:30", "categoria": "Recursos Humanos", "prioridade": 2, "status": "To do" },
+    { "nome": "Tarefa 16", "descricao": "Configuração de novos servidores", "data": "2025-02-25","horaFinal": "13:30", "categoria": "Infraestrutura", "prioridade": 4, "status": "Doing" },
+    { "nome": "Tarefa 17", "descricao": "Análise de feedback de usuários", "data": "2025-03-02","horaFinal": "13:30", "categoria": "Análise", "prioridade": 3, "status": "To do" },
+    { "nome": "Tarefa 18", "descricao": "Apresentação de resultados", "data": "2025-03-08", "horaFinal": "13:30","categoria": "Gestão", "prioridade": 5, "status": "To do" },
+    { "nome": "Tarefa 19", "descricao": "Realizar auditoria interna", "data": "2025-02-27", "horaFinal": "15:00", "categoria": "Auditoria", "prioridade": 3, "status": "Done" },
+    { "nome": "Estudar Java", "descricao": "Estudar Java na Udemy", "data": "2024-01-28", "horaFinal": "13:40", "categoria": "Estudos", "prioridade": 1, "status": "Doing" }
+ ]

@@ -1,4 +1,5 @@
-document.getElementById("button-right").onclick = function() {
+
+document.getElementById("button-right").onclick = function(){ 
 
     let nomePessoa = document.getElementById("input-right").value;
     let inputNomePessa = document.getElementById("input-right");
@@ -16,9 +17,8 @@ document.getElementById("button-right").onclick = function() {
             document.getElementById("right-section").appendChild(erro);
         }
     }else{
-        window.localStorage.setItem("nomePessoa", nomePessoa);
-        console.log(nomePessoa);
         caregarBoasVindas(nomePessoa);
+        window.localStorage.setItem("nomePessoa", nomePessoa);
     }
 }
 
@@ -74,17 +74,22 @@ function caregarBoasVindas(nomePessoa){
         botaoSair.onclick = function(){
             
         titulo.innerHTML = "Bem vindo";
-        paragrafo.innerHTML = "Estamos muito felizes em ter você aqui!Prepare-se para uma experiência incrível de organização e produtividade. Com a nossa To-Do List, você terá uma ferramenta simples e poderosa para gerenciar suas tarefas, definir prioridades e acompanhar seu progresso de forma prática e eficiente.";
+        paragrafo.innerHTML = "Estamos muito felizes em ter você aqui!Prepare-se para uma experiência incrível de organização e produtividade. Com a nossa <b>To-Do List</b>, você terá uma ferramenta simples e poderosa para gerenciar suas tarefas, definir prioridades e acompanhar seu progresso de forma prática e eficiente.";
         
         botaoIrtasks.style.display = "none";
         botaoSair.style.display = "none";
         input.style.display = "inline-block";
         botao.style.display = "inline-block";
+        
+        window.localStorage.removeItem("nomePessoa");
+        window.localStorage.removeItem("todoList");
+
     }
 }
 
 
 document.getElementById("button-task").onclick = function () {
+
     let nomeTask = document.getElementById("nameTask").value;
     let descriptionTask = document.getElementById("descriptionTask").value;
     let dataValue = document.getElementById("dataTask").value;
@@ -113,7 +118,7 @@ document.getElementById("button-task").onclick = function () {
     let taskList = document.getElementById(listId);
 
     let todo = document.createElement("div");
-    todo.className = "bg-stone-700 p-4 rounded-lg shadow-md mb-4";
+    todo.className = "card bg-stone-700 p-4 rounded-lg shadow-md mb-4";
     todo.draggable = "true";
     taskList.appendChild(todo);
 
@@ -126,76 +131,23 @@ document.getElementById("button-task").onclick = function () {
         <p class="text-sm text-stone-400">Categoria: ${categoryTask}</p>
         <p class="text-sm font-bold ${priorityPressed === "Alta" ? "text-red-400" : priorityPressed === "Média" ? "text-yellow-400" : "text-green-400"}">Prioridade: ${priorityPressed}</p>
         <p class="text-sm font-bold ${statusPressed === "To do" ? "text-blue-400" : statusPressed === "Doing" ? "text-orange-400" : "text-green-500"}">Status: ${statusPressed}</p>
-        <button class="button-excluir bg-red-500 text-white p-2 rounded-lg mt-2">Excluir</button>
-        <button class="button-editar bg-blue-500 text-white p-2 rounded-lg mt-2 ml-2">Editar</button>
+        <button class="button-excluir bg-red-500 text-white p-2 rounded-lg mt-2"><i class="fa-solid fa-trash"></i></button>
+        <button class="button-editar bg-blue-500 text-white p-2 rounded-lg mt-2 ml-2"><i class="fa-solid fa-pen-to-square"></i></button>
     `;
 
-    todo.querySelector(".button-excluir").onclick = function () {
-        todo.remove();
-    };
-
-    todo.querySelector(".button-editar").onclick = function () {
-        const modal = document.getElementById('modal');
-        modal.classList.remove('hidden', 'opacity-0');
-        modal.classList.add('opacity-100');
-        modal.firstElementChild.classList.add('scale-100');
-
-        document.getElementById("modalEditNameTask").value = nomeTask;
-        document.getElementById("modalEditDescriptionTask").value = descriptionTask;
-        document.getElementById("modalEditDateTask").value = dataValue;
-        document.getElementById("modalEditFinalHour").value = finalHourTask;
-        document.getElementById("categoryEdit").value = categoryTask;
-
-        [...document.getElementsByName("editPriority")].forEach(radio => {
-            radio.checked = radio.value === priorityPressed;
-        });
-
-        [...document.getElementsByName("editStatus")].forEach(radio => {
-            radio.checked = radio.value === statusPressed;
-        });
-
-        document.getElementById("saveTask").onclick = function () {
-            nomeTask = document.getElementById("modalEditNameTask").value;
-            descriptionTask = document.getElementById("modalEditDescriptionTask").value;
-            dataValue = document.getElementById("modalEditDateTask").value;
-            finalHourTask = document.getElementById("modalEditFinalHour").value;
-            categoryTask = document.getElementById("categoryEdit").value;
-            priorityPressed = [...document.getElementsByName("editPriority")].find(p => p.checked)?.value || "";
-            statusPressed = [...document.getElementsByName("editStatus")].find(s => s.checked)?.value || "";
-
-            todo.querySelector("h3").innerText = nomeTask;
-            todo.querySelectorAll("p")[0].innerText = descriptionTask;
-            todo.querySelectorAll("p")[1].innerText = `Data: ${dataValue}`;
-            todo.querySelectorAll("p")[2].innerText = `Hora final: ${finalHourTask}`;
-            todo.querySelectorAll("p")[3].innerText = `Categoria: ${categoryTask}`;
-            todo.querySelectorAll("p")[4].innerText = `Prioridade: ${priorityPressed}`;
-            todo.querySelectorAll("p")[4].className = `text-sm font-bold ${
-                priorityPressed === "Alta" ? "text-red-400" :
-                priorityPressed === "Média" ? "text-yellow-400" :
-                "text-green-400"
-            }`;
-            todo.querySelectorAll("p")[5].innerText = `Status: ${statusPressed}`;
-            todo.querySelectorAll("p")[5].className = `text-sm font-bold ${
-                statusPressed === "To do" ? "text-blue-400" :
-                statusPressed === "Doing" ? "text-orange-400" :
-                "text-green-500"
-            }`;
-
-            let listId = statusPressed === "To do" ? "todo-list" : statusPressed === "Doing" ? "doing-list" : "done-list";
-            let taskList = document.getElementById(listId);
-            
-            taskList.appendChild(todo);
-
-            alert("Task editada com sucesso!");
-            modal.classList.add('hidden', 'opacity-0');
+    document.querySelectorAll(".button-excluir").forEach(button => {
+        button.onclick = function () {
+            button.parentElement.remove();
+            salvarTarefas();
         };
+    });
 
-        document.getElementById("closeModal").onclick = function () {
-            modal.classList.add('hidden', 'opacity-0');
+    document.querySelectorAll(".button-editar").forEach(button => {
+        button.onclick = function () {
+            abrirModalEdicao(button.parentElement);
         };
-
-    };
-
+    });
+    
     let erro = document.getElementById("erro-task");
     if (erro) erro.remove();
 
@@ -208,5 +160,244 @@ document.getElementById("button-task").onclick = function () {
     document.getElementById("categoryTask").value = "";
     document.getElementsByName("priority").forEach(radio => radio.checked = false);
     document.getElementsByName("status").forEach(radio => radio.checked = false);
-    
+
+    salvarTarefas();
+
+
 };
+
+function salvarTarefas() {
+    localStorage.setItem("todoList", document.getElementById("todo-list").innerHTML);
+    localStorage.setItem("doingList", document.getElementById("doing-list").innerHTML);
+    localStorage.setItem("doneList", document.getElementById("done-list").innerHTML);
+}
+
+function carregarTaskStorage() {
+    const nomePessoa = localStorage.getItem("nomePessoa");
+    const todoList = document.getElementById("todo-list");
+    const doingList = document.getElementById("doing-list");
+    const doneList = document.getElementById("done-list");
+
+    if (nomePessoa) {
+        caregarBoasVindas(nomePessoa);
+    }
+
+    todoList.innerHTML = localStorage.getItem("todoList") || "";
+    doingList.innerHTML = localStorage.getItem("doingList") || "";
+    doneList.innerHTML = localStorage.getItem("doneList") || "";
+
+    document.querySelectorAll(".button-excluir").forEach(button => {
+        button.onclick = function () {
+            button.parentElement.remove();
+            salvarTarefas();
+        };
+    });
+
+    document.querySelectorAll(".button-editar").forEach(button => {
+        button.onclick = function () {
+            abrirModalEdicao(button.parentElement);
+        };
+    });
+
+    
+
+}
+
+function abrirModalEdicao(todo) {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('hidden', 'opacity-0');
+    modal.classList.add('opacity-100');
+    modal.firstElementChild.classList.add('scale-100');
+
+    const nomeTask = todo.querySelector("h3").innerText;
+    const descriptionTask = todo.querySelectorAll("p")[0].innerText;
+    const dataValue = todo.querySelectorAll("p")[1].innerText.replace("Data: ", "");
+    const finalHourTask = todo.querySelectorAll("p")[2].innerText.replace("Hora final: ", "");
+    const categoryTask = todo.querySelectorAll("p")[3].innerText.replace("Categoria: ", "");
+    const priorityTask = todo.querySelectorAll("p")[4].innerText.replace("Prioridade: ", "");
+    const statusTask = todo.querySelectorAll("p")[5].innerText.replace("Status: ", "");
+
+    document.getElementById("modalEditNameTask").value = nomeTask;
+    document.getElementById("modalEditDescriptionTask").value = descriptionTask;
+    document.getElementById("modalEditDateTask").value = dataValue;
+    document.getElementById("modalEditFinalHour").value = finalHourTask;
+    document.getElementById("categoryEdit").value = categoryTask;
+
+    [...document.getElementsByName("editPriority")].forEach(radio => {
+        radio.checked = radio.value === priorityTask;
+    });
+
+    [...document.getElementsByName("editStatus")].forEach(radio => {
+        radio.checked = radio.value === statusTask;
+    });
+
+    document.getElementById("saveTask").onclick = function () {
+        const newPriority = [...document.getElementsByName("editPriority")].find(p => p.checked)?.value || "";
+        const newStatus = [...document.getElementsByName("editStatus")].find(s => s.checked)?.value || "";
+
+        todo.querySelector("h3").innerText = document.getElementById("modalEditNameTask").value;
+        todo.querySelectorAll("p")[0].innerText = document.getElementById("modalEditDescriptionTask").value;
+        todo.querySelectorAll("p")[1].innerText = `Data: ${document.getElementById("modalEditDateTask").value}`;
+        todo.querySelectorAll("p")[2].innerText = `Hora final: ${document.getElementById("modalEditFinalHour").value}`;
+        todo.querySelectorAll("p")[3].innerText = `Categoria: ${document.getElementById("categoryEdit").value}`;
+        todo.querySelectorAll("p")[4].innerText = `Prioridade: ${newPriority}`;
+        todo.querySelectorAll("p")[4].className = `text-sm font-bold ${
+            newPriority === "Alta" ? "text-red-400" :
+            newPriority === "Média" ? "text-yellow-400" :
+            "text-green-400"
+        }`;
+
+        todo.querySelectorAll("p")[5].innerText = `Status: ${newStatus}`;
+        todo.querySelectorAll("p")[5].className = `text-sm font-bold ${
+            newStatus === "To do" ? "text-blue-400" :
+            newStatus === "Doing" ? "text-orange-400" :
+            "text-green-500"
+        }`;
+
+        const newListId = newStatus === "To do" ? "todo-list" : newStatus === "Doing" ? "doing-list" : "done-list";
+        document.getElementById(newListId).appendChild(todo);
+
+        salvarTarefas();
+        alert("Task editada com sucesso!");
+        modal.classList.add('hidden', 'opacity-0');
+    };
+    
+}
+
+
+
+window.onload = function () {
+    carregarTaskStorage();
+    if (localStorage.getItem('doingList') || localStorage.getItem('todoList') || localStorage.getItem('doneList')) {
+        construirTabelaDeTarefas();
+    }
+};
+
+function extrairDadosDeCartao() {
+    const todoListHTML = window.localStorage.getItem('todoList') || '';
+    const doingListHTML = window.localStorage.getItem('doingList') || '';
+    const doneListHTML = window.localStorage.getItem('doneList') || '';
+
+    const allTasksHTML = todoListHTML + doingListHTML + doneListHTML;
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = allTasksHTML;
+
+    const cartoes = tempDiv.querySelectorAll('.card');
+
+    const tarefas = [];
+
+    cartoes.forEach(cartao => {
+        const nome = cartao.querySelector('h3').innerText;
+        const descricao = cartao.querySelectorAll('p')[0].innerText;
+        const data = cartao.querySelectorAll('p')[1].innerText.replace('Data: ', '');
+        const horaFinal = cartao.querySelectorAll('p')[2].innerText.replace('Hora final: ', '');
+        const categoria = cartao.querySelectorAll('p')[3].innerText.replace('Categoria: ', '');
+        const prioridade = cartao.querySelectorAll('p')[4].innerText.replace('Prioridade: ', '');
+        const status = cartao.querySelectorAll('p')[5].innerText.replace('Status: ', '');
+
+        tarefas.push({
+            nome: nome,
+            descricao: descricao,
+            data: data,
+            horaFinal: horaFinal,
+            categoria: categoria,
+            prioridade: prioridade,  
+            status: status
+        });
+    });
+
+    return tarefas;
+}
+
+function construirTabelaDeTarefas() {
+    const listaTarefas = extrairDadosDeCartao();
+    const taskList = document.getElementById('task-list');
+
+    taskList.innerHTML = listaTarefas.map((tarefa, index) => `
+        <tr class="border-b">
+            <td class="p-2">${tarefa.nome}</td>
+            <td class="p-2">
+                <select class="prioridade bg-stone-900 p-1 rounded" data-index="${index}">
+                    <option value="Baixa" class="bg-stone-900" ${tarefa.prioridade === 'Baixa' ? 'selected' : ''}>Baixa</option>
+                    <option value="Média" class="bg-stone-900" ${tarefa.prioridade === 'Média' ? 'selected' : ''}>Média</option>
+                    <option value="Alta" class="bg-stone-900" ${tarefa.prioridade === 'Alta' ? 'selected' : ''}>Alta</option>
+                </select>
+            </td>
+            <td class="p-2">
+                <select class="status bg-stone-900 p-1 rounded" data-index="${index}">
+                    <option value="To do" ${tarefa.status === 'To do' ? 'selected' : ''}>To do</option>
+                    <option value="Doing" ${tarefa.status === 'Doing' ? 'selected' : ''}>Doing</option>
+                    <option value="Done" ${tarefa.status === 'Done' ? 'selected' : ''}>Done</option>
+                </select>
+            </td>
+        </tr>
+    `).join('');
+
+    document.querySelectorAll('.prioridade, .status').forEach(select => {
+        select.addEventListener('change', function () {
+            const index = this.getAttribute('data-index');
+            const field = this.classList.contains('prioridade') ? 'prioridade' : 'status';
+            
+            listaTarefas[index][field] = this.value;
+            atualizarTarefas(listaTarefas);
+        });
+    });
+}
+
+document.getElementById("variousTasksBtn").onclick = function () {
+    const modal = document.getElementById("variousTasksModal");
+    modal.classList.remove("hidden", "opacity-0");
+    modal.classList.add("opacity-100");
+    modal.firstElementChild.classList.add("scale-100");
+
+    construirTabelaDeTarefas();
+};
+
+document.getElementById("variousTasksBtnClose").onclick = function () {
+    const modal = document.getElementById("variousTasksModal");
+    modal.classList.add("hidden", "opacity-0");
+    modal.classList.remove("opacity-100");
+    modal.firstElementChild.classList.remove("scale-100");
+};
+document.getElementById("variousTasksBtnSave").onclick = function () {
+    const listaTarefas = extrairDadosDeCartao();
+    atualizarTarefas(listaTarefas);
+
+    const modal = document.getElementById("variousTasksModal");
+    modal.classList.add("hidden", "opacity-0");
+    modal.classList.remove("opacity-100");
+    modal.firstElementChild.classList.remove("scale-100");
+
+    window.location.reload();
+}
+
+function atualizarTarefas(listaTarefas) {
+    const todoList = listaTarefas.filter(tarefa => tarefa.status === "To do");
+    const doingList = listaTarefas.filter(tarefa => tarefa.status === "Doing");
+    const doneList = listaTarefas.filter(tarefa => tarefa.status === "Done");
+
+    localStorage.setItem("todoList", todoList.map(tarefa => criarHtmlTarefa(tarefa)).join(''));
+    localStorage.setItem("doingList", doingList.map(tarefa => criarHtmlTarefa(tarefa)).join(''));
+    localStorage.setItem("doneList", doneList.map(tarefa => criarHtmlTarefa(tarefa)).join(''));
+}
+
+function criarHtmlTarefa(tarefa) {
+    return `
+        <div class="card bg-stone-700 p-4 rounded-lg shadow-md mb-4" draggable="true">
+            <h3 class="text-xl font-bold text-stone-100">${tarefa.nome}</h3>
+            <p class="text-stone-400">${tarefa.descricao}</p>
+            <p class="text-sm text-stone-400">Data: ${tarefa.data}</p>
+            <p class="text-sm text-stone-400">Hora final: ${tarefa.horaFinal}</p>
+            <p class="text-sm text-stone-400">Categoria: ${tarefa.categoria}</p>
+            <p class="text-sm font-bold ${tarefa.prioridade === "Alta" ? "text-red-400" : tarefa.prioridade === "Média" ? "text-yellow-400" : "text-green-400"}">Prioridade: ${tarefa.prioridade}</p>
+            <p class="text-sm font-bold ${tarefa.status === "To do" ? "text-blue-400" : tarefa.status === "Doing" ? "text-orange-400" : "text-green-500"}">Status: ${tarefa.status}</p>
+            <button class="button-excluir bg-red-500 text-white p-2 rounded-lg mt-2"><i class="fa-solid fa-trash"></i></button>
+            <button class="button-editar bg-blue-500 text-white p-2 rounded-lg mt-2 ml-2"><i class="fa-solid fa-pen-to-square"></i></button>
+        </div>
+    `;
+}
+document.onload = function () {
+construirTabelaDeTarefas();
+};
+
